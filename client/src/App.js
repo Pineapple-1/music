@@ -1,25 +1,24 @@
-import api from "./api/index";
 import React,{useState,useEffect} from "react";
-import { Footer } from "./components/footer/footer";
+import SignIn from "./components/signin/signin";
 import { Navbar } from "./components/navbar/navbar";
+import Router from './components/router/router'
 
 import "./App.css";
 
 function App() {
-  const [feedItems, setFeedItems] = useState("");
+  const [Token,setToken] = useState(null)
+  
+useEffect(()=>{
+  let token = localStorage.getItem('token')
+  setToken(token);
+},[])
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await api.get("feed/");
-      console.log(request.data);
-      setFeedItems(request.data);
-      return request.data;
-    }
-    fetchData();
-  }, []);
+
   return (
     <div className="App">
-      hello , {feedItems[0]?.status_text}
+      <Navbar/>
+      <SignIn setToken = {setToken}/>
+      helo, {Token}
     </div>
   );
 }
