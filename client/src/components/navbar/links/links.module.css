@@ -1,0 +1,40 @@
+.center div {
+  margin-top: 7px;
+  line-height: 60px;
+}
+.links {
+  color: rgba(255, 255, 255, 0.815);
+  font-size: "11px";
+  cursor: "pointer";
+}
+.Label {
+  color: rgba(255, 255, 255, 0.815);
+  font-size: 20px;
+  padding: 0 50px;
+  line-height: 60px;
+}
+ul {
+  display: inline;
+  float: right;
+  margin: 0 30px;
+}
+ul li {
+  display: inline;
+  line-height: 60px;
+  margin: 0 10px;
+  transition: 0.4s linear;
+}
+
+@media (max-width: 499px) {
+  .sm {
+    display: none;
+  }
+  label {
+    padding: 0 10px;
+  }
+  .h3 {
+    font-size: 1em;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+  }
+}

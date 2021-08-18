@@ -15,11 +15,11 @@ import api from "../../api/index";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: theme.spacing(10)
+    marginBottom: theme.spacing(10),
   },
   avatar: {
     margin: theme.spacing(1),
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({ setToken }) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -49,8 +49,9 @@ export default function SignIn() {
       .catch((error) => alert("Wrong Credentials."));
 
     console.log(response?.data);
-    localStorage.setItem('token',response?.data?.token)
-
+    localStorage.setItem("token", response?.data?.token);
+    let Token = localStorage.getItem("token");
+    setToken(Token);
   }
 
   const classes = useStyles();
@@ -113,7 +114,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
