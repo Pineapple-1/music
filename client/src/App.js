@@ -15,7 +15,8 @@ function App() {
     <div className="App">
       <Navbar Token={Token} />
       <Router setToken={setToken} Token={Token} />
-      helo, {Token}
+      <center>      Token = {Token}</center>
+
     </div>
   );
 }
