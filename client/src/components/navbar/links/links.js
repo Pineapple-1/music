@@ -5,7 +5,7 @@ import Styles from './links.module.css'
 const Links = ({Token}) =>{
     return (   
         <div className={Styles.center}>
-        <label className= {Styles.Label} ><Link style={{color:' rgba(255, 255, 255, 0.774)'}} to="/">Home</Link></label>
+        <label className= {Styles.Label} ><Link style={{color:' rgba(255, 255, 255, 0.774)'}} to="/">Blogger</Link></label>
          <ul className={Styles.sm}>
              {Token ? <li><Link className={Styles.links} to="/logout">Logout</Link></li> :
              <>

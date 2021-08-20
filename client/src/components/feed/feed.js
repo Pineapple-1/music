@@ -20,18 +20,25 @@ export const Feed = ({ Token }) => {
     }
     
   }, [Token]);
+
+  const feed = (feedItems,Token)=>{
+    if(feedItems)
+    {
+      return (
+        feedItems.map(feedItem => ( <Card key={feedItem.id} text= {feedItem.status_text}/>))
+      )
+    }
+    else{
+      return(
+        <div>Loading</div>
+      )
+    }
+  }
   return (
     <div>
       <div className={styles.box}>
-        
-        {
-        Token?
-        feedItems ? (
-          <Card text={feedItems[0]?.status_text} />
-        ) : (
-          <div>loding</div>
-        ): <Redirect to="/redirect" />
-
+      {
+        Token?feed(feedItems):<Redirect to= 'redirect/'/>
       }
       </div>
     </div>

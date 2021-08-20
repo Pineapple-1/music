@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import api from "../../api/index";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,9 +35,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ setToken }) {
+export default function SignIn({ setToken ,Token}) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+
+  useEffect(() => {
+    if (Token){
+      return <Redirect to="/feed"/>
+    }
+  }, [Token])
 
   async function getToken(e) {
     e.preventDefault();
@@ -52,10 +59,12 @@ export default function SignIn({ setToken }) {
     localStorage.setItem("token", response?.data?.token);
     let Token = localStorage.getItem("token");
     setToken(Token);
+
   }
 
   const classes = useStyles();
   return (
+    Token?<Redirect to=""/>:<>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -122,5 +131,6 @@ export default function SignIn({ setToken }) {
         </form>
       </div>
     </Container>
+    </>
   );
 }
