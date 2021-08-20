@@ -21,17 +21,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard({text}) {
+export default function OutlinedCard({text,email,name}) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          abdulrehman.ajmal@outlook.com
+          {email}
         </Typography>
         <Typography variant="h5" component="h2">
-          abdulrehman ajmal
+          {name}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Blog
