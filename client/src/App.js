@@ -12,7 +12,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [Token, setToken] = useState(null);
+  const [Token, setToken] = useState(localStorage.getItem("token"));
   useEffect(() => {
     let Token = localStorage.getItem("token");
     setToken(Token);

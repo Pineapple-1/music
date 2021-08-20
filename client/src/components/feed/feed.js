@@ -21,7 +21,7 @@ export const Feed = ({ Token }) => {
     
   }, [Token]);
 
-  const feed = (feedItems,Token)=>{
+  const feed = (feedItems)=>{
     if(feedItems)
     {
       return (
