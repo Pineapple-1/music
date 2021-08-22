@@ -13,12 +13,11 @@ export const Logout = ({ setToken }) => {
       <Container>
         <Grid
           container
-          spacing={3}
           direction="row"
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item>
+          <Grid item >
             <div className={Styles.space}>
               <h2>Looks Like You Logged Out.</h2>{" "}
             </div>

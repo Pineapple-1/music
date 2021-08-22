@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/navbar/navbar";
 import Router from "./components/router/router";
 
+
+
 import "./App.css";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
@@ -20,10 +22,11 @@ function App() {
 
   return (
     <div className="App">
+  
       <ThemeProvider theme={theme}>
         <Navbar Token={Token} />
         <Router setToken={setToken} Token={Token} />
-        <center>Token = {Token}</center>
+
       </ThemeProvider>
     </div>
   );
