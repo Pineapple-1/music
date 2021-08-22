@@ -10,8 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import api from "../../api/index";
-
-
+import { Redirect } from "react-router";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -39,6 +38,7 @@ export default function SignUp() {
   const [pass, setPass] = useState("");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
+  const [success, setSuccess] = useState(null);
 
   const classes = useStyles();
 
@@ -53,7 +53,12 @@ export default function SignUp() {
       .post("profile/", user)
       .catch((error) => alert("Wrong Credentials."));
     console.log(response);
-    alert("Account Created!");
+
+    if (response.statusText === "Created"){
+      alert("Account Created!");
+      setSuccess(true)
+    }
+    
   }
 
   return (
@@ -145,6 +150,7 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
+      {success?<Redirect to="signin/"/>:null}
     </Container>
   );
 }

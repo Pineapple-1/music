@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import  AppBar  from "./components/navbar/navbar";
 import Router from "./components/router/router";
 import { Container} from "@material-ui/core";
+import './App.css'
 
 
 

@@ -2,28 +2,30 @@ import React, { useEffect, useState } from "react";
 import api from "../../api/index";
 import Card from "../card/card";
 import { Redirect } from "react-router";
-import {  Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import Post from "../post/post";
+import { makeStyles } from "@material-ui/core/styles";
 
-const feed = (feedItems, users) => {
-  if (feedItems && users) {
-    return feedItems.map((feedItem) => (
-      <Grid item key={feedItem.id} xs={9} sm={6} md={4} lg={4} xl={4}>
-        <Card
-          text={feedItem.status_text}
-          date={feedItem.created_on}
-          email={users.find((user) => user.id === feedItem.user_profile).email}
-          name={users.find((user) => user.id === feedItem.user_profile).name}
-        />
-      </Grid>
-    ));
-  } else {
-    return <div>Loading</div>;
-  }
-};
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop: "20px"
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+}));
+
+
 
 export const Feed = ({ Token }) => {
   const [feedItems, setFeedItems] = useState("");
   const [users, setUsers] = useState("");
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchData() {
@@ -48,16 +50,41 @@ export const Feed = ({ Token }) => {
   }, [Token]);
 
   return (
-      <Grid
-        container
-
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-
-        spacing={0}
-      >
-        {Token ? feed(feedItems, users) : <Redirect to="redirect/" />}
+    <>
+     <Post Token = {Token} />
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Grid container justifyContent="center" spacing={5}>
+            {Token ? (
+              feedItems && users ? (
+                feedItems.map((feedItem) => (
+                  <Grid
+                    item
+                    key={feedItem.id}
+                  >
+                    <Card
+                      text={feedItem.status_text}
+                      date={feedItem.created_on}
+                      email={
+                        users.find((user) => user.id === feedItem.user_profile)
+                          .email
+                      }
+                      name={
+                        users.find((user) => user.id === feedItem.user_profile)
+                          .name
+                      }
+                    />
+                  </Grid>
+                ))
+              ) : (
+                <div>Loading</div>
+              )
+            ) : (
+              <Redirect to="redirect/" />
+            )}
+          </Grid>
+        </Grid>
       </Grid>
+    </>
   );
 };
