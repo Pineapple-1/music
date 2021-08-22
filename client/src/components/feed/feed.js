@@ -51,7 +51,7 @@ export const Feed = ({ Token }) => {
 
   return (
     <>
-     <Post Token = {Token} />
+     <Post Token = {Token} setFeedItems ={setFeedItems} feedItems={feedItems}/>
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={5}>

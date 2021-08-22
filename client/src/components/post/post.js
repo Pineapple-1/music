@@ -4,13 +4,17 @@ import Button from "@material-ui/core/Button";
 import { Grid } from "@material-ui/core";
 import api from '../../api/index'
 
-export default function LayoutTextFields({Token}) {
+export default function LayoutTextFields({Token,setFeedItems,feedItems}) {
 const [text, setText] = useState('')
 
 async function makepost() {
+    console.log(Token)
+
+    const data = {status_text:text}
     const header = { Authorization: `Token ${Token}`}
-    const request = await api.post("feed/",text, {header});
+    const request = await api.post("feed/",data, {header});
     console.log(request.data);
+   
     return request.data;
   }
 
