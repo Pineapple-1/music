@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../api/index";
 import Card from "../card/card";
 import { Redirect } from "react-router";
-import { Container, Grid } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 
 const feed = (feedItems, users) => {
   if (feedItems && users) {
@@ -48,11 +48,16 @@ export const Feed = ({ Token }) => {
   }, [Token]);
 
   return (
-    <Container>
-        <Grid container  >
+      <Grid
+        container
+
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+
+        spacing={0}
+      >
         {Token ? feed(feedItems, users) : <Redirect to="redirect/" />}
       </Grid>
-      </Container>
-
   );
 };

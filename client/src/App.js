@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Navbar } from "./components/navbar/navbar";
+import  AppBar  from "./components/navbar/navbar";
 import Router from "./components/router/router";
+import { Container} from "@material-ui/core";
 
 
 
-import "./App.css";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 const theme = createTheme({
@@ -24,9 +24,10 @@ function App() {
     <div className="App">
   
       <ThemeProvider theme={theme}>
-        <Navbar Token={Token} />
+        <AppBar Token={Token} />
+        <Container>
         <Router setToken={setToken} Token={Token} />
-
+        </Container>
       </ThemeProvider>
     </div>
   );
