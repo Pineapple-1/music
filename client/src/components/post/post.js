@@ -9,12 +9,12 @@ const [text, setText] = useState('')
 
 async function makepost() {
     console.log(Token)
-
     const data = {status_text:text}
-    const header = { Authorization: `Token ${Token}`}
-    const request = await api.post("feed/",data, {header});
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${Token}`}
+    const request = await api.post("feed/",data, {headers:headers})
     console.log(request.data);
-   
     return request.data;
   }
 
