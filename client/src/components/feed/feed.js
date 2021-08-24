@@ -10,19 +10,18 @@ import Post from "../post/post";
 import api from "../../api/index";
 
 const useStyles = makeStyles((theme) => ({
-
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
   },
-
 }));
 
 export default function Feed({ Token }) {
   const [feedItems, setFeedItems] = useState("");
   const [users, setUsers] = useState("");
   const [text, setText] = useState("");
-  const [update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState("");
+  const [value, setValue] = useState("");
 
   const classes = useStyles();
   useEffect(() => {
@@ -52,32 +51,52 @@ export default function Feed({ Token }) {
       <CssBaseline />
 
       <main>
-      <Post Token={Token} setFeedItems={setFeedItems} setText={setText} text = {text}/>
+        <Post
+          Token={Token}
+          setFeedItems={setFeedItems}
+          setText={setText}
+          text={text}
+          update={update}
+          setUpdate={setUpdate}
+          value = {value}
+          setValue= {setValue}
+        />
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
-          
+
           <Grid container spacing={4}>
-          {Token ? (
+            {Token ? (
               feedItems && users ? (
-                feedItems.slice(0).reverse().map((feedItem) => (
-                    <Grid item key = {feedItem.id} xs={12} sm={6} md={4}>
-                    <Card
-                      text={feedItem.status_text}
-                      date={feedItem.created_on}
-                      email={
-                        users.find((user) => user.id === feedItem.user_profile).email
-                      }
-                      name={
-                        users.find((user) => user.id === feedItem.user_profile).name
-                      }
-                      Token = {Token}
-                      Pid = {localStorage.getItem("email")}
-                      Fid = {feedItem.id}
-                      setFeedItems={setFeedItems}
-                      setText={setText}
-                    />
-                  </Grid>
-                ))
+                feedItems
+                  .slice(0)
+                  .reverse()
+                  .map((feedItem) => (
+                    <Grid item key={feedItem.id} xs={12} sm={6} md={4}>
+                      <Card
+                        text={feedItem.status_text}
+                        date={feedItem.created_on}
+                        email={
+                          users.find(
+                            (user) => user.id === feedItem.user_profile
+                          ).email
+                        }
+                        name={
+                          users.find(
+                            (user) => user.id === feedItem.user_profile
+                          ).name
+                        }
+                        Token={Token}
+                        Pid={localStorage.getItem("email")}
+                        Fid={feedItem.id}
+                        setFeedItems={setFeedItems}
+                        setText={setText}
+                        update={update}
+                        setUpdate={setUpdate}
+                        value = {value}
+                        setValue= {setValue}
+                      />
+                    </Grid>
+                  ))
               ) : (
                 <div>Loading</div>
               )
