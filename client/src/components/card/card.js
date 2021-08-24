@@ -35,27 +35,47 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function SimpleCard({name,email,text,date,id,Token}) {
+export default function SimpleCard({name,email,text,date,Fid,Pid,Token,setFeedItems,setText}) {
   const classes = useStyles();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const formatedDate = new Date(date)
 
 
 
-  async function fetchUser(id) {
-    const request = await api.get(`profile/${id}`);
-    return request.data;
-  }
-
-
   const deleteitem = async () =>{ 
     const headers = { 
       'Content-Type': 'application/json',
       'Authorization': `Token ${Token}`}
+
+    if (email === Pid)
+    {
+      const request = await api.delete(`feed/${Fid}/`, {headers:headers})
+      const feed = await api.get("feed/",{headers:headers} );
+      setFeedItems(feed.data);
+      console.log(request)
+    }
+    else{
+      alert("Shame on you !! it is not your post delete your posts")
+    }
+    }
+  const edititem = async()=>{
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${Token}`}
     
-    const req = await api.get(`feed/${id}`,{headers:headers} );
-    console.log(req.data)
+    if (email === Pid)
+    {
+      setText(text)
+      const feed = await api.get("feed/",{headers:headers} );
+      setFeedItems(feed.data);
+
+    }
+    else{
+      alert("Shame on you !! it is not your post delete your posts")
+    }
+
   }
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -65,7 +85,7 @@ export default function SimpleCard({name,email,text,date,id,Token}) {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" onClick={edititem}>
             <MoreVertIcon />
           </IconButton>
         }

@@ -18,9 +18,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Album({ Token }) {
+export default function Feed({ Token, email }) {
   const [feedItems, setFeedItems] = useState("");
   const [users, setUsers] = useState("");
+  const [text, setText] = useState("");
+
   const classes = useStyles();
   useEffect(() => {
     async function fetchData() {
@@ -49,7 +51,7 @@ export default function Album({ Token }) {
       <CssBaseline />
 
       <main>
-      <Post Token={Token} setFeedItems={setFeedItems}/>
+      <Post Token={Token} setFeedItems={setFeedItems} setText={setText} text = {text}/>
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           
@@ -62,15 +64,16 @@ export default function Album({ Token }) {
                       text={feedItem.status_text}
                       date={feedItem.created_on}
                       email={
-                        users.find((user) => user.id === feedItem.user_profile)
-                          .email
+                        users.find((user) => user.id === feedItem.user_profile).email
                       }
                       name={
-                        users.find((user) => user.id === feedItem.user_profile)
-                          .name
+                        users.find((user) => user.id === feedItem.user_profile).name
                       }
                       Token = {Token}
-                      id = {feedItem.id}
+                      Pid = {localStorage.getItem("email")}
+                      Fid = {feedItem.id}
+                      setFeedItems={setFeedItems}
+                      setText={setText}
                     />
                   </Grid>
                 ))

@@ -1,20 +1,34 @@
 import React from "react";
-import { Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import SignIn from "../signin/signin";
-import SignUp from '../signup/signup'
+import SignUp from "../signup/signup";
 import { Logout } from "../logout/logout";
-import Feed from '../feed/feed'
-import {Redirect} from '../redirect/redirect'
+import Feed from "../feed/feed";
+import { Redirect } from "../redirect/redirect";
 
-
-const Router = ({setToken,Token}) => {
+const Router = ({ setToken, Token, setEmail, email }) => {
   return (
     <Switch>
-      <Route path="/" exact><Feed Token = {Token}/></Route>
-      <Route path="/signin"><SignIn Token = {Token} setToken = {setToken}/></Route>
+      <Route path="/" exact>
+        <Feed Token={Token} setEmail={setEmail} email={email} />
+      </Route>
+      <Route path="/signin">
+        <SignIn
+          Token={Token}
+          setToken={setToken}
+          setEmail={setEmail}
+          email={email}
+        />
+      </Route>
       <Route path="/signup" component={SignUp} />
-      <Route path="/logout" > <Logout setToken = {setToken}/></Route>
-      <Route path="/redirect" > <Redirect/></Route>
+      <Route path="/logout">
+        {" "}
+        <Logout setToken={setToken} />
+      </Route>
+      <Route path="/redirect">
+        {" "}
+        <Redirect />
+      </Route>
     </Switch>
   );
 };

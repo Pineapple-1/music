@@ -15,6 +15,7 @@ const theme = createTheme({
 
 function App() {
   const [Token, setToken] = useState(localStorage.getItem("token"));
+  const [email, setEmail] = useState("");
   useEffect(() => {
     let Token = localStorage.getItem("token");
     setToken(Token);
@@ -26,7 +27,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <AppBar Token={Token} />
 
-        <Router setToken={setToken} Token={Token} />
+        <Router setToken={setToken} Token={Token}  setEmail= {setEmail} email={email}/>
  
       </ThemeProvider>
     </div>
