@@ -75,6 +75,7 @@ export default function Feed({ Token }) {
                       <Card
                         text={feedItem.status_text}
                         date={feedItem.created_on}
+                        likes={feedItem.likes}
                         email={
                           users.find(
                             (user) => user.id === feedItem.user_profile

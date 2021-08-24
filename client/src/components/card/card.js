@@ -79,7 +79,7 @@ export default function SimpleCard({
       alert("Shame on you !! it is not your post update your posts");
     }
   };
-
+  
   return (
     <Card className={classes.card}>
       <CardHeader
