@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ setToken, Token, setEmail, email }) {
+export default function SignIn({ setToken, Token }) {
+  const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   useEffect(() => {

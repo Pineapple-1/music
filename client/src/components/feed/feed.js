@@ -18,10 +18,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Feed({ Token, email }) {
+export default function Feed({ Token }) {
   const [feedItems, setFeedItems] = useState("");
   const [users, setUsers] = useState("");
   const [text, setText] = useState("");
+  const [update, setUpdate] = useState(false)
 
   const classes = useStyles();
   useEffect(() => {
