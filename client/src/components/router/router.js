@@ -3,7 +3,7 @@ import { Switch, Route} from "react-router-dom";
 import SignIn from "../signin/signin";
 import SignUp from '../signup/signup'
 import { Logout } from "../logout/logout";
-import {Feed} from '../feed/feed'
+import Feed from '../feed/feed'
 import {Redirect} from '../redirect/redirect'
 
 
