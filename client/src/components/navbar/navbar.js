@@ -38,9 +38,8 @@ export default function NavBar({Token}) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
        <HomeIcon color="action" />
-
     </IconButton>
           <Typography variant="h6" className={classes.title}>
             <a className={classes.links} href="/"> Blogger</a>

@@ -56,7 +56,7 @@ export default function Album({ Token }) {
           <Grid container spacing={4}>
           {Token ? (
               feedItems && users ? (
-                feedItems.map((feedItem) => (
+                feedItems.slice(0).reverse().map((feedItem) => (
                     <Grid item key = {feedItem.id} xs={12} sm={6} md={4}>
                     <Card
                       text={feedItem.status_text}
