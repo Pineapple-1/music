@@ -42,7 +42,7 @@ export default function NavBar({Token}) {
        <HomeIcon color="action" />
     </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <a className={classes.links} href="/"> Blogger</a>
+            <a className={classes.links} href="/"> Reminder</a>
           </Typography>
              {Token ? <Link className={classes.links} underline="none" href="/logout" variant="body2">Logout</Link> :
              <>
